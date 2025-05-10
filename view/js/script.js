@@ -1,4 +1,5 @@
 const apiUrl = 'http://localhost:3000/tasks';
+//'http://localhost:3000/tasks/id'
 
 //elementos do html para salvar e listar
 const btnSalvar = document.getElementById('btnSalvar');
@@ -29,19 +30,21 @@ btnSalvar.addEventListener('click', async function(e){
 })
 
 //Função com modal para editar uma task
-btnEditar.addEventListener('click', function(){
-    //e.preventDefault();
+btnEditar.addEventListener('click', function(e){
+    e.preventDefault();
     const idTask = inputId.value.trim();
-    console.log("antes do if")
-    if(idTask === ''){
+    console.log(verificarIdExistente(idTask).verificarIdExistente);
+    if(verificarIdExistente(idTask) === true){
+        alert("sou truee")
+    }
+    if(idTask === '' || verificarIdExistente(idTask) === false){
         alert("Digite o id da tarefa que deseja editar.");
     }
     else{
         modalEditar.style.display = 'block';
-        inputId.value = '';
-        console.log("entrou no if");
         
     }
+
 
 });
 
@@ -50,25 +53,20 @@ btnFecharModal.addEventListener('click', function () {
     modalEditar.style.display = 'none';
 });
 
+
 formEditarTarefa.addEventListener('submit', async function (e) {
     e.preventDefault(); // evita o recarregamento da página
 
-    const titulo = inputTituloModal.value.trim();
-    const descricao = textareaModal.value.trim();
-    const tipo = tipo.value;
+    const idTask = inputId.value.trim();
+    const titulo = document.getElementById('inputTituloModal');
+    const descricao = document.getElementById('textareaModal');
+    const tipo = document.getElementById('selectTipoUpdate');
+    
+    editarTarefa(idTask, { titulo: titulo.value, descricao: descricao.value, tipo: tipo.value });
 
-    if (titulo && descricao) {
-        task = {
-            titulo: titulo,
-            descricao: descricao
-        };
-        console.log("Tarefa salva:", task); // ou manipule como quiser
-
-        // Fecha o modal e limpa os campos
-        modalEditar.style.display = 'none';
-        inputTituloModal.value = '';
-        textareaModal.value = '';
-    }
+    // Limpa os campos do modal
+    titulo.value = '';
+    descricao.value = '';
 });
 
 // Funções que são usadas nos eventos para o html
@@ -87,7 +85,41 @@ async function criarNovaTarefa(tarefa){
         else{
             console.log("Erro ao criar tarefa");
         }
-      
+    }
+    catch(erro){
+        console.log(erro);
+    }
+}
+
+async function editarTarefa(id, tarefaAtualizada){
+    try{
+        const response = await fetch(`${apiUrl}/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(tarefaAtualizada),
+        });
+
+        if(response.ok){
+            console.log("Tarefa editada com sucesso");
+        }
+        else{
+            console.log("Erro ao atualizar tarefa");
+        }
+    }
+    catch(erro){
+        console.log(erro);
+    }
+}
+
+async function verificarIdExistente(id){
+    try{
+        const response = await fetch(`${apiUrl}/${id}`);
+        if(response.ok){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     catch(erro){
         console.log(erro);

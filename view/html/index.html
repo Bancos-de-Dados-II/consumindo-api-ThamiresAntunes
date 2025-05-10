@@ -75,7 +75,12 @@
                 <input type="text" id="inputTituloModal" name="titulo" placeholder="Título da Tarefa" maxlength="28" required><br>
                 
                 <label for="textareaModal">Descrição:</label>
-                <textarea id="textareaModal" name="descricao" placeholder="Descrição da Tarefa" maxlength="100" required></textarea><br><br>
+                <textarea id="textareaModal" name="descricao" placeholder="Descrição da Tarefa" maxlength="100" required></textarea><br>
+
+                <select id="selectTipoUpdate" name="selectTipo" class="inputs">
+                    <option value="Pessoal">Pessoal</option>
+                    <option value="Profissional">Profissional</option>
+                </select><br>
 
                 <button type="submit" id="btnModal" class="btn">Editar</button>
             </form>
