@@ -1,3 +1,5 @@
+const apiUrl = 'http://localhost:3000/tasks';
+
 //elementos do html para salvar e listar
 const btnSalvar = document.getElementById('btnSalvar');
 const btnListar = document.getElementById('btnListar');
@@ -18,15 +20,12 @@ btnSalvar.addEventListener('click', async function(e){
     const descricao = document.getElementById('textDescricao');
     const tipo = document.getElementById('selectTipo');
 
-    criarNovaTarefa( { tiulo: titulo.value, descricao: descricao.value, tipo: tipo.value } );
+    criarNovaTarefa( { titulo: titulo.value, descricao: descricao.value, tipo: tipo.value } );
+    
 
-    const task = {
-        titulo: titulo.value,
-        descricao: descricao.value,
-        tipo: tipo.value
-    };
+    titulo.value = '';
+    descricao.value = '';
 
-    console.log(task);
 })
 
 //Função com modal para editar uma task
@@ -71,3 +70,26 @@ formEditarTarefa.addEventListener('submit', async function (e) {
         textareaModal.value = '';
     }
 });
+
+// Funções que são usadas nos eventos para o html
+
+async function criarNovaTarefa(tarefa){
+    try{
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(tarefa),
+        });
+
+        if(response.ok){
+            console.log("Tarefa criada com sucesso");
+        }
+        else{
+            console.log("Erro ao criar tarefa");
+        }
+      
+    }
+    catch(erro){
+        console.log(erro);
+    }
+}
