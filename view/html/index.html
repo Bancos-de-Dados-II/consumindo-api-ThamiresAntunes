@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="styleTeste.css">
+    <title>Sistema de Tarefas</title>
+</head>
+<body>
+    <main>
+        <div class="principal">
+            <h1>Sistema de Tarefas</h1>
+            <form id="formTask">
+                <h2>Criar nova Tarefa</h2>
+                <input type="text" id="inputTitulo" class="inputs" placeholder="Título: " maxlength="28" required>
+                <textarea id="textDescricao" class="inputs" placeholder="Descrição:" maxlength="100" required></textarea>             
+                <select id="selectTipo" name="selectTipo" class="inputs">
+                    <option value="Pessoal">Pessoal</option>
+                    <option value="Profissional">Profissional</option>
+                </select>
+                
+                <div id="divBotoes">
+                    <button type="submit" id="btnSalvar" class="btn"><span>Salvar</span></button>
+                    <button id="btnListar" class="btn"><span>Listar</span></button>
+                </div>
+            </form>
+
+            <form id="formAcaoId">
+                <h2>Busca pelo Id da Tarefa</h2>
+                <div class="divBuscar">
+                    <input type="text" id="inputId" placeholder="Id da tarefa" required>
+                    <div>
+                        <button id="btnExcluir" class="btn">Excluir</button>
+                        <button id="btnEditar" class="btn">Editar</button>
+                    </div>
+                </div>
+                
+            </form> 
+        </div>
+
+        <div id="divList">
+            <h2>Lista de Tarefas</h2>
+            <ul id="lista">
+                <li class="tarefa">
+                    <p>1 - Atividade de pw</p>
+                    Criar a api. hsahhksjhferuhjkdfgkjhghghfdghfkdjhkjfhgjkh
+                </li>
+
+                <li class="tarefa">
+                    <p>2 - Atividade de pw</p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ex tempora sunt excepturi ut ipsum praesentium iure, nemo officia et cumque similique a nam voluptate laudantium magnam eos sed asperiores.
+                </li>
+
+                <li class="tarefa">
+                    <p>2 - Atividade de pw</p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ex tempora sunt excepturi ut ipsum praesentium iure, nemo officia et cumque similique a nam voluptate laudantium magnam eos sed asperiores.
+                </li>
+
+                <li class="tarefa">
+                    <p>2 - Atividade de pw</p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ex tempora sunt excepturi ut ipsum praesentium iure, nemo officia et cumque similique a nam voluptate laudantium magnam eos sed asperiores.
+                </li>
+            </ul>
+        </div> 
+    </main>
+
+    <!-- Modal -->
+    <div id="modalEditar" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar" id="fecharModal">&times;</span>
+            <h2>Editar Tarefa</h2>
+            <form id="formEditarTarefa">
+                <label for="inputTituloModal">Título:</label>
+                <input type="text" id="inputTituloModal" name="titulo" placeholder="Título da Tarefa" maxlength="28" required><br>
+                
+                <label for="textareaModal">Descrição:</label>
+                <textarea id="textareaModal" name="descricao" placeholder="Descrição da Tarefa" maxlength="100" required></textarea><br><br>
+
+                <button type="submit" id="btnModal" class="btn">Editar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
