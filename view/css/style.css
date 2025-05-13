@@ -10,6 +10,7 @@ D9CEC5
 body{
     background: linear-gradient(135deg, #eddac4, #7a5636d6);
     font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
 }
 
 main{
@@ -87,7 +88,6 @@ select{
 }
 .btn:hover{
     cursor: pointer;
-    /*background-color: #8C7764;*/
     background-color: #8C7764;;
     transform: scale(1.01);
     box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.15);
@@ -112,10 +112,12 @@ select{
     background-color: #ffff;
     width: 80%;
     font-size: 18px;
-    font-weight: 600px;
     display: flex;
     justify-content: space-between;
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+}
+.descricaoTarefa{
+    margin-left: 10px;
 }
 
 ul {
@@ -160,7 +162,7 @@ p{
 #inputId{
     font-family: 'Poppins', sans-serif;
     height: 37px;
-    width: 250px;
+    width: 350px;
     padding-left: 1rem;
     font-size: 1rem;
     font-weight: 500;
@@ -171,9 +173,9 @@ p{
 
 .divBuscar{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    gap: 30px;
 }
 
 /*estilizando modal de editar tarefas*/
